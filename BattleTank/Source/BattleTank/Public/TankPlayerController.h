@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Tank.h"
+#include "Public/Tank.h"
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h" // must be last include
 
@@ -18,5 +18,5 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 public:
 	ATank* GetControlledTank() const;
 	
-	
+	virtual void BeginPlay() override;
 };

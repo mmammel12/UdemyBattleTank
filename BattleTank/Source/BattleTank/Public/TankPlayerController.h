@@ -3,9 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Tank.h"
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h" // must be last #include
+
+// Forward Declaration
+class ATank;
 
 UCLASS()
 class BATTLETANK_API ATankPlayerController : public APlayerController
@@ -28,7 +30,7 @@ private:
 	UPROPERTY(EditAnywhere)
 		float CrossHairYLocation = 0.33333;
 	UPROPERTY(EditAnywhere)
-		float LineTraceRange = 1000000.0;
+		float LineTraceRange = 100000.0;
 
 	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 

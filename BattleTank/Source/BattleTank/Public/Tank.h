@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h" // Must be last #include
 
+// Forward Declarations
 class UTankBarrel;
 class UTankAimingComponent;
 

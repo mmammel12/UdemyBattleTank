@@ -2,7 +2,6 @@
 
 #include "TankBarrel.h"
 #include "Engine/World.h"
-#include "Math/UnrealMathUtility.h"
 
 
 void UTankBarrel::Elevate(float RelativeSpeed)

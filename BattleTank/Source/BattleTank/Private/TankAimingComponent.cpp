@@ -1,11 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "TankAimingComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/GameplayStaticsTypes.h"
 #include "GameFramework/Actor.h"
 #include "Engine/World.h"
 #include "TankBarrel.h"
-#include "TankAimingComponent.h"
+#include "TankTurret.h"
 
 
 // Sets default values for this component's properties
@@ -20,7 +21,14 @@ UTankAimingComponent::UTankAimingComponent()
 
 void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
+	if (!BarrelToSet) { return;  }
 	Barrel = BarrelToSet;
+}
+
+void UTankAimingComponent::SetTurretReference(UTankTurret * TurretToSet)
+{
+	if (!TurretToSet) { return; }
+	Turret = TurretToSet;
 }
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
@@ -54,7 +62,12 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	// Work out difference between current barrel rotation and AimDirection
 	FRotator BarrelRotator = Barrel->GetForwardVector().Rotation();
 	FRotator AimAsRotator = AimDirection.Rotation();
-	FRotator DeltaRotator = AimAsRotator - BarrelRotator;
+	FRotator DeltaBarrelRotator = AimAsRotator - BarrelRotator;
 
-	Barrel->Elevate(DeltaRotator.Pitch);
+	// Work out difference between current turret rotation and AimDirection
+	FRotator TurretRotator = Turret->GetForwardVector().Rotation();
+	FRotator DeltaTurretRotator = AimAsRotator - TurretRotator;
+
+	Barrel->Elevate(DeltaBarrelRotator.Pitch);
+	Turret->Rotate(DeltaTurretRotator.Yaw);
 }

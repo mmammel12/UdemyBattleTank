@@ -27,5 +27,5 @@ protected:
 	virtual void BeginPlay() override;
 
 private:	
-	UProjectileMovementComponent * ProjectileMovement = nullptr;
+	UProjectileMovementComponent* ProjectileMovement = nullptr;
 };
